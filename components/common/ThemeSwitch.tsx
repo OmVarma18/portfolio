@@ -158,7 +158,7 @@ export const ThemeToggleButton = ({
       variant="ghost"
       size="icon"
       className={cn(
-        'size-10 cursor-pointer p-0 transition-all duration-300 active:scale-95',
+        'size-10 cursor-pointer p-0 transition-all duration-300 active:scale-95 bg-linear-to-b from-white to-gray-50/50 shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_2px_4px_rgba(0,0,0,0.05),0_12px_24px_rgba(0,0,0,0.05)] dark:bg-linear-to-b dark:from-zinc-900/50 dark:to-black/80 dark:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] rounded-full border border-gray-200/80 dark:border-white/10 active:translate-y-0.5',
         className,
       )}
       onClick={toggleTheme}
@@ -170,7 +170,6 @@ export const ThemeToggleButton = ({
   );
 };
 
-// ///////////////////////////////////////////////////////////////////////////
 
 export type AnimationVariant =
   | 'circle'

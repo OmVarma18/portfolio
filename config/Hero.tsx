@@ -38,6 +38,11 @@ export const heroconfig = {
             component: "TypeScript"
         },
         {
+            name: "NextJS",
+            href: "https://nextjs.org/",
+            component: "NextJs"
+        },
+        {
             name: "React",
             href: "https://react.dev/",
             component: "ReactIcon"
@@ -54,7 +59,7 @@ export const heroconfig = {
         }
     ],
     discription: {
-        template: 'I build interactive web apps using {skills:0}, {skills:1}, {skills:2} and {skills:3}. With a focus on <b>UI</b> design. Enthusiastic about <b>Product Development</b> , driven by a keen eye for design.',
+        template: 'I build interactive web apps using {skills:0}, {skills:1}, {skills:2}, {skills:3} and {skills:4}. With a focus on <b>UI</b> design. Enthusiastic about <b>Product Development</b> , driven by a keen eye for design.',
     },
     buttons: [
         {

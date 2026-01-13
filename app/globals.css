@@ -273,3 +273,18 @@
 .prose h4 {
   font-size: calc(var(--blog-font-size) * 1.25);
 }
+
+/* Section Reveal Animation */
+.reveal-hidden {
+  opacity: 0;
+  filter: blur(40px);
+  transform: translateY(100px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, filter, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0);
+}

@@ -4,13 +4,23 @@ import Hero from "@/components/sections/Hero"
 import Project from "@/components/sections/Project"
 import Blog from "@/components/sections/Blog"
 
+import SectionReveal from "@/components/common/SectionReveal"
+
 export default function Home() {
   return (
-    <Container className="min-h-screen py-16">
-      <Hero />
-      <Project />
-      <About />
-      <Blog />
+    <Container className="min-h-screen py-16 space-y-32">
+      <SectionReveal>
+        <Hero />
+      </SectionReveal>
+      <SectionReveal delay={100}>
+        <Project />
+      </SectionReveal>
+      <SectionReveal delay={200}>
+        <About />
+      </SectionReveal>
+      <SectionReveal delay={300}>
+        <Blog />
+      </SectionReveal>
     </Container>
   )
 }

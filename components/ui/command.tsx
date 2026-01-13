@@ -52,7 +52,7 @@ function CommandDialog({
         className={cn("overflow-hidden p-0", className)}
         showCloseButton={showCloseButton}
       >
-        <Command className="[&_[cmdk-group-heading]]:text-muted-foreground **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+        <Command className="**:data-[slot=cmdk-group-heading]:text-muted-foreground **:data-[slot=command-input-wrapper]:h-12 **:data-[slot=cmdk-group-heading]:px-2 **:data-[slot=cmdk-group-heading]:font-medium **:data-[slot=cmdk-group]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 **:data-[slot=cmdk-input]:h-12 **:data-[slot=cmdk-item]:px-2 **:data-[slot=cmdk-item]:py-3 **:data-[slot=cmdk-item]_svg]:h-5 **:data-[slot=cmdk-item]_svg]:w-5">
           {children}
         </Command>
       </DialogContent>
@@ -89,6 +89,7 @@ function CommandList({
   return (
     <CommandPrimitive.List
       data-slot="command-list"
+      data-lenis-prevent
       className={cn(
         "max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto",
         className
@@ -118,7 +119,7 @@ function CommandGroup({
     <CommandPrimitive.Group
       data-slot="command-group"
       className={cn(
-        "text-foreground [&_[cmdk-group-heading]]:text-muted-foreground overflow-hidden p-1 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium",
+        "text-foreground **:data-[slot=cmdk-group-heading]:text-muted-foreground overflow-hidden p-1 **:data-[slot=cmdk-group-heading]:px-2 **:data-[slot=cmdk-group-heading]:py-1.5 **:data-[slot=cmdk-group-heading]:text-xs **:data-[slot=cmdk-group-heading]:font-medium",
         className
       )}
       {...props}
@@ -163,7 +164,7 @@ function CommandShortcut({
     <span
       data-slot="command-shortcut"
       className={cn(
-        "text-muted-foreground ml-auto text-xs tracking-widest",
+        "text-muted-foreground ml-auto flex h-6 w-6 items-center justify-center rounded border bg-muted font-mono text-[10px] font-medium leading-none",
         className
       )}
       {...props}
