@@ -25,6 +25,11 @@ interface ProjectCaseStudyPageProps {
 export async function generateStaticParams() {
     const slugs = getProjectCaseStudySlugs();
 
+    // Fallback for empty slugs to avoid build error
+    if (slugs.length === 0) {
+        return [];
+    }
+
     return slugs.map((slug) => ({
         slug,
     }));
@@ -82,7 +87,7 @@ export default async function ProjectCaseStudyPage({
             <div className="space-y-12">
                 {/* Back Button */}
                 <div>
-                    <Button variant="ghost" asChild className="group">
+                    <Button asChild className="btn-3d-premium group w-fit">
                         <Link href="/projects" className="flex items-center space-x-2">
                             <ArrowLeft className="size-4" />
                             <span>Back to Projects</span>

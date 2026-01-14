@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 const Projects = () => {
     return (
-        <Container className='mt-24'>
+        <Container className='mt-16'>
             <SectionHeading subHeading='My Work' Heading='Projects' />
             <ProjectList className="mt-8" projects={projects.slice(0, 4)} />
             <div className="mt-8 flex justify-center">

@@ -19,6 +19,7 @@ import PageTransition from '@/components/common/PageTransition';
 import PageTracker from '@/components/common/PageTracker';
 import { Toaster } from "@/components/ui/sonner";
 import { Quote } from '@/components/common/Quote';
+import BottomBlur from '@/components/common/BottomBlur';
 
 export const metadata = getMetadata('/')
 
@@ -43,6 +44,7 @@ export default function RootLayout({
                 </PageTransition>
                 <Quote />
                 <Footer />
+                <BottomBlur />
                 <Toaster position="top-right" />
               </ReactLenis>
             </TooltipProvider>

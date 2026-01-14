@@ -80,7 +80,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <div className="space-y-12">
                     {/* Back Button */}
                     <div>
-                        <Button variant="ghost" asChild className="group">
+                        <Button asChild className="btn-3d-premium group w-fit">
                             <Link href="/blog" className="flex items-center space-x-2">
                                 <ArrowLeft className="size-4" />
                                 <span>Back to Blog</span>

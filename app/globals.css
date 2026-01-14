@@ -247,6 +247,32 @@
     inset 0 2px 6px rgba(255, 255, 255, 0.04);
 }
 
+/* Premium 3D Button Utility (Simplified & Tactile) */
+.btn-3d-premium {
+  @apply relative flex items-center justify-center gap-2 rounded-2xl border px-6 py-2.5 text-sm font-bold transition-all duration-500 hover:scale-110 active:scale-95;
+
+  /* Base Style (Dark) */
+  @apply border-white/5 bg-black text-white;
+  box-shadow:
+    0 4px 0 0 rgba(255, 255, 255, 0.05),
+    0 8px 15px -5px rgba(0, 0, 0, 0.5);
+}
+
+.btn-3d-premium:hover {
+  @apply border-white/10 bg-black;
+  box-shadow:
+    0 6px 0 0 rgba(255, 255, 255, 0.08),
+    0 20px 40px -10px rgba(0, 0, 0, 0.9);
+}
+
+.btn-3d-premium:active {
+  @apply translate-y-[2px] bg-zinc-800;
+  /* Slight grey when clicked */
+  box-shadow:
+    0 2px 0 0 rgba(255, 255, 255, 0.05),
+    0 4px 8px -2px rgba(0, 0, 0, 0.4);
+}
+
 /* Blog font size controls */
 .prose {
   font-size: var(--blog-font-size);
