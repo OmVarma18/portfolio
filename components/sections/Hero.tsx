@@ -1,7 +1,7 @@
 "use client"
 import { heroconfig, skillComponents, socialLinks } from '@/config/Hero'
 import { parseTemplate } from '@/lib/hero'
-import { cn } from '@/lib/utils'
+import { cn, getValidationImagePath } from '@/lib/utils'
 import Link from 'next/link'
 
 
@@ -63,7 +63,7 @@ const Hero = () => {
     return (
         <Container className=''>
             <Image
-                src={avatar}
+                src={getValidationImagePath(avatar)}
                 alt="hero"
                 width={100}
                 height={100}

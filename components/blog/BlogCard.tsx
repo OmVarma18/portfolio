@@ -3,6 +3,7 @@ import { BlogPostPreview } from '@/types/blog'
 import { Card } from '../ui/card'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getValidationImagePath } from "@/lib/utils";
 
 import ArrowRight from '../svgs/ArrowRight';
 import Calender from '../svgs/Calender';
@@ -25,7 +26,7 @@ export function BlogCard({ post }: BlogCardProps) {
             <div className="relative aspect-video w-full overflow-hidden">
                 <Link href={`/blog/${slug}`}>
                     <Image
-                        src={image}
+                        src={getValidationImagePath(image)}
                         alt={title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"

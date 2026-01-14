@@ -16,6 +16,7 @@ import { type Project } from '@/types/Project';
 import { Link } from 'next-view-transitions';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { getValidationImagePath } from "@/lib/utils";
 
 import ArrowRight from '../svgs/ArrowRight';
 import Github from '../svgs/Github';
@@ -36,7 +37,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 <div className="group relative aspect-video overflow-hidden">
                     <Image
                         className="h-full w-full object-cover"
-                        src={'/assets/p1.jpeg'}
+                        src={getValidationImagePath(project.image || '/assets/p1.jpeg')}
                         alt={project.title}
                         width={1920}
                         height={1080}

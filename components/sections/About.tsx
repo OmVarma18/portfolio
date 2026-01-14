@@ -4,6 +4,7 @@ import SectionHeading from '../common/SectionHeading'
 import Image from 'next/image'
 import { about, mySkills } from '@/config/About'
 import { Tooltip, TooltipTrigger, TooltipContent } from '../ui/tooltip'
+import { getValidationImagePath } from "@/lib/utils";
 
 const About = () => {
     return (
@@ -11,7 +12,7 @@ const About = () => {
             <SectionHeading subHeading="About" Heading="Me" />
             <div className="mt-8 flex flex-col gap-4 md:flex-row">
                 <Image
-                    src="/assets/logo1.png"
+                    src={getValidationImagePath("/assets/logo1.png")}
                     alt='Om Varma'
                     width={100}
                     height={100}
