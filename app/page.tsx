@@ -5,6 +5,7 @@ import Project from "@/components/sections/Project"
 import Blog from "@/components/sections/Blog"
 
 import SectionReveal from "@/components/common/SectionReveal"
+import CTA from "@/components/sections/Cta"
 
 export default function Home() {
   return (
@@ -20,6 +21,9 @@ export default function Home() {
       </SectionReveal>
       <SectionReveal delay={300}>
         <Blog />
+      </SectionReveal>
+      <SectionReveal delay={300}>
+        <CTA />
       </SectionReveal>
     </Container>
   )

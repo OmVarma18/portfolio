@@ -68,12 +68,12 @@ export const heroconfig = {
             href: '/resume',
             icon: 'CV',
         },
-        // {
-        //     variant: 'default',
-        //     text: 'Get in touch',
-        //     href: '/contact',
-        //     icon: 'Chat',
-        // },
+        {
+            variant: 'default',
+            text: 'Get in touch',
+            href: '/contact',
+            icon: 'Chat',
+        },
     ],
 }
 
@@ -85,14 +85,14 @@ export const socialLinks = [
         icon: <X />,
     },
     {
-        name: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/om-varma/',
-        icon: <LinkedIn />,
-    },
-    {
         name: 'Github',
         href: 'https://github.com/OmVarma18',
         icon: <Github />,
+    },
+    {
+        name: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/om-varma/',
+        icon: <LinkedIn />,
     },
     {
         name: 'Email',

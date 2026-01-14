@@ -27,12 +27,21 @@ import {
     Folder,
     Settings,
     Phone,
+    History,
+    ArrowUp,
+    Github,
+    Mail,
+    Share2,
+    Keyboard,
 } from 'lucide-react';
 import { Project } from '@/types/Project';
 import { BlogPostPreview } from '@/types/blog';
 import { CommandShortcut } from '@/components/ui/command';
+import { getCookie } from 'cookies-next';
 
+import { toast } from 'sonner';
 import { useThemeToggle } from './ThemeSwitch';
+import { ShortcutHelp } from './ShortcutHelp';
 
 interface CommandMenuProps {
     projects: Project[];
@@ -41,6 +50,7 @@ interface CommandMenuProps {
 
 export function CommandMenu({ projects, posts }: CommandMenuProps) {
     const [open, setOpen] = React.useState(false);
+    const [showHelp, setShowHelp] = React.useState(false);
     const router = useRouter();
     const { setTheme, resolvedTheme } = useTheme();
     const { toggleTheme } = useThemeToggle({ variant: 'circle', start: 'bottom-center' });
@@ -63,6 +73,11 @@ export function CommandMenu({ projects, posts }: CommandMenuProps) {
             if (e.key === 't') {
                 e.preventDefault();
                 toggleTheme();
+            }
+            if (e.key === ',' && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault();
+                setOpen(false);
+                setShowHelp((prev) => !prev);
             }
 
             // Global single-key navigation (only when search is closed and no modifiers are pressed)
@@ -87,6 +102,23 @@ export function CommandMenu({ projects, posts }: CommandMenuProps) {
                     e.preventDefault();
                     router.push('/resume');
                 }
+                if (e.key === 'c') {
+                    e.preventDefault();
+                    router.push('/contact');
+                }
+            }
+
+            // Global Shift shortcuts
+            if (!open && e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                if (e.key === 'E') {
+                    e.preventDefault();
+                    navigator.clipboard.writeText('omvarma369@gmail.com');
+                    toast.success('Email copied to clipboard');
+                }
+                if (e.key === 'G') {
+                    e.preventDefault();
+                    window.open('https://github.com/OmVarma18', '_blank');
+                }
             }
 
             // Smooth scroll to top on Shift + ArrowUp
@@ -99,6 +131,55 @@ export function CommandMenu({ projects, posts }: CommandMenuProps) {
         document.addEventListener('keydown', down);
         return () => document.removeEventListener('keydown', down);
     }, [toggleTheme, open, router]);
+
+    const [recentPages, setRecentPages] = React.useState<string[]>([]);
+
+    React.useEffect(() => {
+        if (open) {
+            const cookieValue = getCookie('recent_pages');
+            if (cookieValue) {
+                try {
+                    setRecentPages(JSON.parse(cookieValue as string));
+                } catch (e) {
+                    setRecentPages([]);
+                }
+            }
+        }
+    }, [open]);
+
+    const getPageInfo = (path: string) => {
+        if (path === '/') return { title: 'Home', description: 'Navigate to the homepage', icon: <Home className="mr-4 h-5 w-5 text-muted-foreground" />, shortcut: 'H' };
+        if (path === '/work-experience') return { title: 'Work Experience', description: 'View work experience and history', icon: <Briefcase className="mr-4 h-5 w-5 text-muted-foreground" />, shortcut: 'W' };
+        if (path === '/blog') return { title: 'Blog', description: 'Browse all blog posts', icon: <BookOpen className="mr-4 h-5 w-5 text-muted-foreground" />, shortcut: 'B' };
+        if (path === '/projects') return { title: 'Projects', description: 'View all projects and work', icon: <Folder className="mr-4 h-5 w-5 text-muted-foreground" />, shortcut: 'P' };
+        if (path === '/resume') return { title: 'Resume', description: 'View and download resume', icon: <FileText className="mr-4 h-5 w-5 text-muted-foreground" />, shortcut: 'R' };
+        if (path === '/contact') return { title: 'Contact', description: 'Send a message and get in touch', icon: <Phone className="mr-4 h-5 w-5 text-muted-foreground" />, shortcut: 'C' };
+        if (path === '/#setup') return { title: 'Setup', description: 'My workspace and tools', icon: <Laptop className="mr-4 h-5 w-5 text-muted-foreground" />, shortcut: 'S' };
+
+        // Check projects
+        if (path.startsWith('/projects/')) {
+            const slug = path.replace('/projects/', '');
+            const project = projects.find(p => p.projectDetailsPageSlug === slug);
+            return {
+                title: project ? project.title : slug,
+                description: 'View project details',
+                icon: <Code className="mr-4 h-5 w-5 text-muted-foreground" />
+            };
+        }
+
+        // Check blog posts
+        if (path.startsWith('/blog/')) {
+            const slug = path.replace('/blog/', '');
+            const post = posts.find(p => p.slug === slug);
+            return {
+                title: post ? post.frontmatter.title : slug,
+                description: 'Read blog post',
+                icon: <LayoutTemplate className="mr-4 h-5 w-5 text-muted-foreground" />
+            };
+        }
+
+        return { title: path, description: 'Recently visited page', icon: <History className="mr-4 h-5 w-5 text-muted-foreground" /> };
+    };
 
     const runCommand = React.useCallback((command: () => unknown) => {
         setOpen(false);
@@ -124,7 +205,33 @@ export function CommandMenu({ projects, posts }: CommandMenuProps) {
                 <CommandInput placeholder="Type a Command or Search..." />
                 <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
-                    <CommandGroup heading="Navigation">
+
+                    {recentPages.length > 0 && (
+                        <>
+                            <CommandGroup heading="Recent Pages" className='m-4'>
+                                {recentPages.map((path) => {
+                                    const pageInfo = getPageInfo(path);
+                                    return (
+                                        <CommandItem
+                                            key={path}
+                                            onSelect={() => runCommand(() => router.push(path))}
+                                            className="py-4"
+                                        >
+                                            {pageInfo.icon}
+                                            <div className="flex flex-col text-left">
+                                                <span className="text-sm font-semibold">{pageInfo.title}</span>
+                                                <span className="text-xs text-muted-foreground">{pageInfo.description}</span>
+                                            </div>
+                                            {pageInfo.shortcut && <CommandShortcut>{pageInfo.shortcut}</CommandShortcut>}
+                                        </CommandItem>
+                                    );
+                                })}
+                            </CommandGroup>
+                            <CommandSeparator />
+                        </>
+                    )}
+
+                    <CommandGroup heading="Navigation" className='m-4'>
                         <CommandItem className="py-4" onSelect={() => runCommand(() => router.push('/'))}>
                             <Home className="mr-4 h-5 w-5 text-muted-foreground" />
                             <div className="flex flex-col text-left">
@@ -165,15 +272,7 @@ export function CommandMenu({ projects, posts }: CommandMenuProps) {
                             </div>
                             <CommandShortcut>R</CommandShortcut>
                         </CommandItem>
-                        <CommandItem className="py-4" onSelect={() => runCommand(() => router.push('/#setup'))}>
-                            <Settings className="mr-4 h-5 w-5 text-muted-foreground" />
-                            <div className="flex flex-col text-left">
-                                <span className="text-sm font-semibold">Go to Setup</span>
-                                <span className="text-xs text-muted-foreground">View development setup and tools</span>
-                            </div>
-                            <CommandShortcut>S</CommandShortcut>
-                        </CommandItem>
-                        <CommandItem className="py-4" onSelect={() => runCommand(() => router.push('/#contact'))}>
+                        <CommandItem className="py-4" onSelect={() => runCommand(() => router.push('/contact'))}>
                             <Phone className="mr-4 h-5 w-5 text-muted-foreground" />
                             <div className="flex flex-col text-left">
                                 <span className="text-sm font-semibold">Go to Contact</span>
@@ -185,16 +284,20 @@ export function CommandMenu({ projects, posts }: CommandMenuProps) {
                     <CommandSeparator />
                     {projects.length > 0 && (
                         <>
-                            <CommandGroup heading="Projects">
+                            <CommandGroup heading="Projects" className='m-4'>
                                 {projects.slice(0, 3).map((project) => (
                                     <CommandItem
                                         key={project.projectDetailsPageSlug}
+                                        className="py-4"
                                         onSelect={() =>
                                             runCommand(() => router.push(`/projects/${project.projectDetailsPageSlug}`))
                                         }
                                     >
-                                        <Code className="mr-2 h-4 w-4" />
-                                        {project.title}
+                                        <Code className="mr-4 h-5 w-5 text-muted-foreground" />
+                                        <div className="flex flex-col text-left">
+                                            <span className="text-sm font-semibold">{project.title}</span>
+                                            <span className="text-xs text-muted-foreground">View project details</span>
+                                        </div>
                                     </CommandItem>
                                 ))}
                             </CommandGroup>
@@ -203,38 +306,90 @@ export function CommandMenu({ projects, posts }: CommandMenuProps) {
                     )}
                     {posts.length > 0 && (
                         <>
-                            <CommandGroup heading="Posts">
+                            <CommandGroup heading="Posts" className='m-4'>
                                 {posts.slice(0, 3).map((post) => (
                                     <CommandItem
                                         key={post.slug}
+                                        className="py-4"
                                         onSelect={() =>
                                             runCommand(() => router.push(`/blog/${post.slug}`))
                                         }
                                     >
-                                        <LayoutTemplate className="mr-2 h-4 w-4" />
-                                        {post.frontmatter.title}
+                                        <LayoutTemplate className="mr-4 h-5 w-5 text-muted-foreground" />
+                                        <div className="flex flex-col text-left">
+                                            <span className="text-sm font-semibold">{post.frontmatter.title}</span>
+                                            <span className="text-xs text-muted-foreground">Read blog post</span>
+                                        </div>
                                     </CommandItem>
                                 ))}
                             </CommandGroup>
                             <CommandSeparator />
                         </>
                     )}
-                    <CommandGroup heading="Theme">
-                        <CommandItem onSelect={() => runCommand(() => setTheme('light'))}>
-                            <Sun className="mr-2 h-4 w-4" />
-                            Light
+                    <CommandGroup heading="Actions" className='m-4'>
+                        <CommandItem className="py-4" onSelect={() => runCommand(() => {
+                            navigator.clipboard.writeText('omvarma369@gmail.com');
+                            toast.success('Email copied to clipboard');
+                        })}>
+                            <Mail className="mr-4 h-5 w-5 text-muted-foreground" />
+                            <div className="flex flex-col text-left">
+                                <span className="text-sm font-semibold">Copy Email</span>
+                                <span className="text-xs text-muted-foreground">Copy email address to clipboard</span>
+                            </div>
+                            <CommandShortcut>Shift+E</CommandShortcut>
                         </CommandItem>
-                        <CommandItem onSelect={() => runCommand(() => setTheme('dark'))}>
-                            <Moon className="mr-2 h-4 w-4" />
-                            Dark
+                        <CommandItem className="py-4" onSelect={() => runCommand(() => {
+                            window.open('https://github.com/OmVarma18', '_blank');
+                        })}>
+                            <Github className="mr-4 h-5 w-5 text-muted-foreground" />
+                            <div className="flex flex-col text-left">
+                                <span className="text-sm font-semibold">View GitHub Profile</span>
+                                <span className="text-xs text-muted-foreground">Open the GitHub profile in a new tab</span>
+                            </div>
+                            <CommandShortcut>Shift+G</CommandShortcut>
                         </CommandItem>
-                        <CommandItem onSelect={() => runCommand(() => setTheme('system'))}>
-                            <Laptop className="mr-2 h-4 w-4" />
-                            System
+                    </CommandGroup>
+                    <CommandSeparator />
+                    <CommandGroup heading="Features" className='m-4'>
+                        <CommandItem className="py-4" onSelect={() => runCommand(() => toggleTheme())}>
+                            <Sun className="mr-4 h-5 w-5 text-muted-foreground" />
+                            <div className="flex flex-col text-left">
+                                <span className="text-sm font-semibold">Toggle Theme</span>
+                                <span className="text-xs text-muted-foreground">Switch between light and dark mode</span>
+                            </div>
+                            <CommandShortcut>T</CommandShortcut>
+                        </CommandItem>
+                        <CommandItem className="py-4" onSelect={() => setOpen(true)}>
+                            <Search className="mr-4 h-5 w-5 text-muted-foreground" />
+                            <div className="flex flex-col text-left">
+                                <span className="text-sm font-semibold">Command Palette</span>
+                                <span className="text-xs text-muted-foreground">Open the command palette</span>
+                            </div>
+                            <CommandShortcut>Ctrl+K</CommandShortcut>
+                        </CommandItem>
+                        <CommandItem className="py-4" onSelect={() => runCommand(() => window.scrollTo({ top: 0, behavior: 'smooth' }))}>
+                            <ArrowUp className="mr-4 h-5 w-5 text-muted-foreground" />
+                            <div className="flex flex-col text-left">
+                                <span className="text-sm font-semibold">Scroll to Top</span>
+                                <span className="text-xs text-muted-foreground">Scroll to the top of the page</span>
+                            </div>
+                            <CommandShortcut>Shift+↑</CommandShortcut>
+                        </CommandItem>
+                    </CommandGroup>
+                    <CommandSeparator />
+                    <CommandGroup heading="Help" className='m-4'>
+                        <CommandItem className="py-4" onSelect={() => runCommand(() => setShowHelp(true))}>
+                            <Keyboard className="mr-4 h-5 w-5 text-muted-foreground" />
+                            <div className="flex flex-col text-left">
+                                <span className="text-sm font-semibold">Show Keyboard Shortcuts</span>
+                                <span className="text-xs text-muted-foreground">View all available keyboard shortcuts</span>
+                            </div>
+                            <CommandShortcut>Ctrl+,</CommandShortcut>
                         </CommandItem>
                     </CommandGroup>
                 </CommandList>
             </CommandDialog>
+            <ShortcutHelp open={showHelp} onOpenChange={setShowHelp} />
         </>
     );
 }
