@@ -1,5 +1,8 @@
 import { about } from "./About";
 import { heroconfig } from "./Hero";
+import nextConfig from "../next.config";
+
+const basePath = nextConfig.basePath || "";
 
 export interface PageMeta {
     title: string;
@@ -31,7 +34,7 @@ export const siteConfig = {
         heroconfig.name.toLowerCase(),
     ],
     url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-    ogImage: "/assets/logo1.png",
+    ogImage: `${basePath}/assets/logo1.png`,
 }
 
 export const pageMetadata: Record<string, PageMeta> = {
@@ -55,7 +58,7 @@ export const pageMetadata: Record<string, PageMeta> = {
         description:
             "Get in touch with me for collaborations, projects, or opportunities. I'd love to hear from you!",
         keywords: ['contact', 'hire', 'collaboration', 'freelance', 'developer'],
-        ogImage: '/assets/logo.png',
+        ogImage: `${basePath}/assets/logo.png`,
         twitterCard: 'summary',
     },
 
@@ -71,7 +74,7 @@ export const pageMetadata: Record<string, PageMeta> = {
             'applications',
             'software',
         ],
-        ogImage: '/meta/projects.png',
+        ogImage: `${basePath}/meta/projects.png`,
         twitterCard: 'summary',
     },
 
@@ -87,7 +90,7 @@ export const pageMetadata: Record<string, PageMeta> = {
             'qualifications',
             'download',
         ],
-        ogImage: '/meta/resume.png',
+        ogImage: `${basePath}/meta/resume.png`,
         twitterCard: 'summary',
     },
 }
@@ -108,9 +111,9 @@ export function generateMetadata(pathname: string) {
         authors: [{ name: siteConfig.author.name }],
         creator: siteConfig.author.name,
         icons: {
-            icon: '/assets/logo1.png',
-            shortcut: '/assets/logo1.png',
-            apple: '/assets/logo1.png',
+            icon: `${basePath}/assets/logo1.png`,
+            shortcut: `${basePath}/assets/logo1.png`,
+            apple: `${basePath}/assets/logo1.png`,
         },
         openGraph: {
             type: 'website',

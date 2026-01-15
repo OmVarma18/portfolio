@@ -1,12 +1,12 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import nextConfig from "../next.config"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const isProd = process.env.NODE_ENV === 'production';
-const basePath = isProd ? '/portfolio' : '';
+const basePath = nextConfig.basePath || "";
 
 export function getValidationImagePath(src: string) {
   if (!src) return src;

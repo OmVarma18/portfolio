@@ -16,12 +16,16 @@ export const navbarConfig = {
         //     href: '/work-experience',
         // },
         {
-            label: 'Blogs',
-            href: '/blog',
+            label: 'Contact',
+            href: '/contact'
         },
         {
             label: 'Projects',
             href: '/projects',
+        },
+        {
+            label: 'Blogs',
+            href: '/blog',
         },
     ] as NavItem[],
 };

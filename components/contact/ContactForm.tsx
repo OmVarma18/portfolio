@@ -24,6 +24,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
+import { sendToTelegram } from '@/lib/telegram';
 
 import Chat from '../svgs/Chat';
 
@@ -44,8 +45,8 @@ const contactFormSchema = z.object({
         }),
     message: z
         .string()
-        .min(10, {
-            message: 'Message must be at least 10 characters.',
+        .min(2, {
+            message: 'Message must be at least 2 characters.',
         })
         .max(1000, {
             message: 'Message must not exceed 1000 characters.',
@@ -71,27 +72,26 @@ export default function ContactForm() {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
+            const message = `
+🔔 *New Contact Form Submission*
 
-            const result = await response.json();
+👤 *Name:* ${data.name.trim()}
+📧 *Email:* ${data.email.trim()}
+📱 *Phone:* ${data.phone.trim()}
 
-            if (response.ok) {
-                toast.success('Message sent successfully!');
-                form.reset();
-            } else {
-                toast.error(
-                    result.error || 'Failed to send message. Please try again.',
-                );
-            }
+💬 *Message:*
+${data.message.trim()}
+
+⏰ *Submitted:* ${new Date().toISOString()}
+            `.trim();
+
+            await sendToTelegram(message);
+
+            toast.success('Message sent successfully!');
+            form.reset();
         } catch (error) {
             console.error('Error submitting form:', error);
-            toast.error('Something went wrong. Please try again later.');
+            toast.error('Failed to send message. Please ensure Telegram is configured.');
         } finally {
             setIsSubmitting(false);
         }
@@ -130,7 +130,7 @@ export default function ContactForm() {
                                     <FormItem>
                                         <FormLabel>Phone *</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="+91 (123) xxx-xxxx" {...field} />
+                                            <Input placeholder="+1 (123) xxx-xxxx" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
