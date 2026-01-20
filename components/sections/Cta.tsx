@@ -36,7 +36,7 @@ interface CallToActionProps {
 }
 
 export default function CTA({
-    profileImage = getValidationImagePath("ctaConfig.profileImage"),
+    profileImage = getValidationImagePath(ctaConfig.profileImage),
     profileAlt = ctaConfig.profileAlt,
     linkText = ctaConfig.linkText,
     calLink = ctaConfig.calLink,
@@ -108,7 +108,7 @@ export default function CTA({
                         onClick={handleButtonClick}
                     >
                         <div className="relative z-20 flex items-center gap-2 transition-all duration-300 group-hover:gap-8">
-                            <div className="h-5 w-5 flex-shrink-0 overflow-hidden rounded-full">
+                            <div className="h-5 w-5 shrink-0 overflow-hidden rounded-full">
                                 <Image
                                     alt={profileAlt}
                                     width={20}
