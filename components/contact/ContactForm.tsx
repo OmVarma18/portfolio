@@ -29,23 +29,18 @@ import { sendToTelegram } from '@/lib/telegram';
 import Chat from '../svgs/Chat';
 
 const contactFormSchema = z.object({
-    name: z.string().min(2, {
+    name: z.string().min(0, {
         message: 'Name must be at least 2 characters.',
     }),
-    email: z.string().email({
+    email: z.email({
         message: 'Please enter a valid email address.',
+    }).optional().or(z.literal('')),
+    phone: z.string().optional().or(z.literal('')).refine((val) => !val || (val.length >= 10 && /^[\+]?[1-9][\d]{0,15}$/.test(val)), {
+        message: 'Please enter a valid phone number (at least 10 digits).',
     }),
-    phone: z
-        .string()
-        .min(10, {
-            message: 'Phone number must be at least 10 characters.',
-        })
-        .regex(/^[\+]?[1-9][\d]{0,15}$/, {
-            message: 'Please enter a valid phone number.',
-        }),
     message: z
         .string()
-        .min(2, {
+        .min(0, {
             message: 'Message must be at least 2 characters.',
         })
         .max(1000, {
@@ -75,9 +70,9 @@ export default function ContactForm() {
             const message = `
 🔔 *New Contact Form Submission*
 
-👤 *Name:* ${data.name.trim()}
-📧 *Email:* ${data.email.trim()}
-📱 *Phone:* ${data.phone.trim()}
+👤 *Name:* ${data.name.trim() || 'Not provided'}
+📧 *Email:* ${data.email?.trim() || 'Not provided'}
+📱 *Phone:* ${data.phone?.trim() || 'Not provided'}
 
 💬 *Message:*
 ${data.message.trim()}
@@ -103,7 +98,7 @@ ${data.message.trim()}
                 <CardTitle>Send me a message</CardTitle>
                 <CardDescription>
                     Fill out the form below and I will get back to you as soon as
-                    possible.
+                    possible. Only name in compalsory.
                 </CardDescription>
             </CardHeader>
             <CardContent>
@@ -128,7 +123,7 @@ ${data.message.trim()}
                                 name="phone"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Phone *</FormLabel>
+                                        <FormLabel>Phone</FormLabel>
                                         <FormControl>
                                             <Input placeholder="+1 (123) xxx-xxxx" {...field} />
                                         </FormControl>
@@ -143,7 +138,7 @@ ${data.message.trim()}
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Email *</FormLabel>
+                                    <FormLabel>Email</FormLabel>
                                     <FormControl>
                                         <Input
                                             placeholder="your.email@example.com"
@@ -161,10 +156,10 @@ ${data.message.trim()}
                             name="message"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Message *</FormLabel>
+                                    <FormLabel>Reason To Contact</FormLabel>
                                     <FormControl>
                                         <Textarea
-                                            placeholder="Tell me about your project or just say hello..."
+                                            placeholder="Have a job offer a project or just say hello..."
                                             className="min-h-[120px] resize-none"
                                             {...field}
                                         />

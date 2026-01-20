@@ -5,6 +5,8 @@ import { useHapticFeedback } from '@/hooks/use-haptic-feedback';
 import Cal, { getCalApi } from '@calcom/embed-react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { getValidationImagePath } from "@/lib/utils";
+
 
 import Container from '../common/Container';
 import {
@@ -34,7 +36,7 @@ interface CallToActionProps {
 }
 
 export default function CTA({
-    profileImage = ctaConfig.profileImage,
+    profileImage = getValidationImagePath("ctaConfig.profileImage"),
     profileAlt = ctaConfig.profileAlt,
     linkText = ctaConfig.linkText,
     calLink = ctaConfig.calLink,
