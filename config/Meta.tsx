@@ -1,8 +1,8 @@
 import { about } from "./About";
 import { heroconfig } from "./Hero";
-import nextConfig from "../next.config";
+import { basePath as configBasePath } from "../next.config";
 
-const basePath = nextConfig.basePath || "";
+const basePath = configBasePath || "";
 
 export interface PageMeta {
     title: string;

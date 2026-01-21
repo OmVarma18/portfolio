@@ -1,12 +1,12 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import nextConfig from "../next.config"
+import { basePath as configBasePath } from "../next.config"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const basePath = nextConfig.basePath || "";
+const basePath = configBasePath || "";
 
 export function getValidationImagePath(src: string) {
   if (!src) return src;
