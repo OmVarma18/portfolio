@@ -7,7 +7,7 @@
 
 export const ctaConfig = {
     // Profile image settings
-    profileImage: '/assets/logo1.png',
+    profileImage: '/assets/logo2.png',
     profileAlt: 'Profile',
 
     // CTA button settings

@@ -67,7 +67,7 @@ const Hero = () => {
                 alt="hero"
                 width={100}
                 height={100}
-                className='size-24 rounded-full bg-blue-300 dark:bg-yellow-300 ring-4 ring-white shadow-lg dark:ring-neutral-900'
+                className='size-24 rounded-full object-cover bg-blue-300 dark:bg-yellow-300 ring-4 ring-white shadow-lg dark:ring-neutral-900'
             />
 
             <div className="mt-8 flex flex-col gap-2">

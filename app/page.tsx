@@ -19,9 +19,9 @@ export default function Home() {
       <SectionReveal delay={200}>
         <About />
       </SectionReveal>
-      <SectionReveal delay={300}>
+      {/* <SectionReveal delay={300}>
         <Blog />
-      </SectionReveal>
+      </SectionReveal> */}
       <SectionReveal delay={300}>
         <CTA />
       </SectionReveal>

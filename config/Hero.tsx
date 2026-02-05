@@ -30,7 +30,7 @@ export const skillComponents = {
 export const heroconfig = {
     name: "Om Varma",
     title: "A Full Stack Web Developer.",
-    avatar: "/assets/logo1.png",
+    avatar: "/assets/logo2.png",
     skills: [
         {
             name: "Typescript",

@@ -12,22 +12,20 @@ import MDXIcon from "@/components/technology/MDXIcon";
 
 export const projects: Project[] = [
     {
-        title: "Slide",
-        description: "An AI-powered SaaS for automated Instagram Direct Message replies.",
-        // image: "/projects/instagram-dm.png",
-        link: "https://example.com/instagram-dm",
+        title: "Stock-Sense",
+        description: "An Stock screening app which help you decided which stock to invest in",
+        image: "/projects/dashboard.png",
+        link: "https://github.com/OmVarma18/stock-project",
         technologies: [
             { name: 'Next.js', icon: <NextJs key="nextjs" /> },
             { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
             { name: 'React', icon: <ReactIcon key="react" /> },
-            { name: 'Vercel', icon: <Vercel key="vercel" /> },
             { name: 'MongoDB', icon: <MongoDB key="mongodb" /> },
             { name: 'Tailwind CSS', icon: <TailwindCss key="tailwindcss" /> },
             { name: 'shadcn/ui', icon: <Shadcn key="shadcn" /> },
-            { name: 'MDX', icon: <MDXIcon key="mdx" /> },
         ],
-        github: "https://github.com/OmVarma18/instagram-dm",
-        live: "https://instagram-dm-demo.com",
+        github: "https://github.com/OmVarma18/stock-project",
+        live: "https://github.com/OmVarma18/stock-project",
         details: "Detailed explanation of the Instagram auto-reply project...",
         projectDetailsPageSlug: "instagram-dm-automation",
         isWorking: true
@@ -35,21 +33,21 @@ export const projects: Project[] = [
     {
         title: "Portfolio Website",
         description: "A sleek, modern portfolio built with Next.js and Tailwind CSS.",
-        // image: "/projects/portfolio.png",
-        link: "https://omvarma.me",
+        image: "/projects/portfolio.jpg",
+        link: "https://omvarma18.github.io/portfolio",
         technologies: [
             { name: "TypeScript", icon: <TypeScript /> },
             { name: "Next.js", icon: <NextJs /> },
             { name: "React", icon: <ReactIcon /> }
         ],
         github: "https://github.com/OmVarma18/portfolio",
-        live: "https://omvarma.me",
+        live: "https://omvarma18.github.io/portfolio",
         details: "The story behind building this high-performance portfolio...",
         projectDetailsPageSlug: "portfolio-website",
         isWorking: false
     },
     {
-        title: "OmniStore",
+        title: "DocsChat",
         description: "A high-performance e-commerce platform with Next.js and Stripe.",
         // image: "/projects/portfolio.png",
         link: "https://omvarma.me",
@@ -64,36 +62,4 @@ export const projects: Project[] = [
         projectDetailsPageSlug: "portfolio-website-2",
         isWorking: true
     },
-    {
-        title: "VibeCheck",
-        description: "Real-time sentiment analysis for social media conversations.",
-        // image: "/projects/portfolio.png",
-        link: "https://omvarma.me",
-        technologies: [
-            { name: "TypeScript", icon: <TypeScript /> },
-            { name: "Next.js", icon: <NextJs /> },
-            { name: "React", icon: <ReactIcon /> }
-        ],
-        github: "https://github.com/OmVarma18/portfolio",
-        live: "https://omvarma.me",
-        details: "The story behind building this high-performance portfolio...",
-        projectDetailsPageSlug: "portfolio-website-3",
-        isWorking: true
-    },
-    {
-        title: "ZenTask",
-        description: "A minimalist task manager with focus mode and habit tracking.",
-        // image: "/projects/portfolio.png",
-        link: "https://omvarma.me",
-        technologies: [
-            { name: "TypeScript", icon: <TypeScript /> },
-            { name: "Next.js", icon: <NextJs /> },
-            { name: "React", icon: <ReactIcon /> }
-        ],
-        github: "https://github.com/OmVarma18/portfolio",
-        live: "https://omvarma.me",
-        details: "The story behind building this high-performance portfolio...",
-        projectDetailsPageSlug: "portfolio-website-4",
-        isWorking: true
-    }
 ];

@@ -34,7 +34,7 @@ export const siteConfig = {
         heroconfig.name.toLowerCase(),
     ],
     url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-    ogImage: `${basePath}/assets/logo1.png`,
+    ogImage: `${basePath}/assets/logo2.png`,
 }
 
 export const pageMetadata: Record<string, PageMeta> = {
@@ -111,9 +111,9 @@ export function generateMetadata(pathname: string) {
         authors: [{ name: siteConfig.author.name }],
         creator: siteConfig.author.name,
         icons: {
-            icon: `${basePath}/assets/logo1.png`,
-            shortcut: `${basePath}/assets/logo1.png`,
-            apple: `${basePath}/assets/logo1.png`,
+            icon: `${basePath}/assets/logo2.png`,
+            shortcut: `${basePath}/assets/logo2.png`,
+            apple: `${basePath}/assets/logo2.png`,
         },
         openGraph: {
             type: 'website',
