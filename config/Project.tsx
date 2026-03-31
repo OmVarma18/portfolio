@@ -46,20 +46,20 @@ export const projects: Project[] = [
         projectDetailsPageSlug: "portfolio-website",
         isWorking: false
     },
-    {
-        title: "DocsChat",
-        description: "A high-performance e-commerce platform with Next.js and Stripe.",
-        // image: "/projects/portfolio.png",
-        link: "https://omvarma.me",
-        technologies: [
-            { name: "TypeScript", icon: <TypeScript /> },
-            { name: "Next.js", icon: <NextJs /> },
-            { name: "React", icon: <ReactIcon /> }
-        ],
-        github: "https://github.com/OmVarma18/portfolio",
-        live: "https://omvarma.me",
-        details: "The story behind building this high-performance portfolio...",
-        projectDetailsPageSlug: "portfolio-website-2",
-        isWorking: true
-    },
+    // {
+    //     title: "DocsChat",
+    //     description: "A high-performance e-commerce platform with Next.js and Stripe.",
+    //     // image: "/projects/portfolio.png",
+    //     link: "https://omvarma.me",
+    //     technologies: [
+    //         { name: "TypeScript", icon: <TypeScript /> },
+    //         { name: "Next.js", icon: <NextJs /> },
+    //         { name: "React", icon: <ReactIcon /> }
+    //     ],
+    //     github: "https://github.com/OmVarma18/portfolio",
+    //     live: "https://omvarma.me",
+    //     details: "The story behind building this high-performance portfolio...",
+    //     projectDetailsPageSlug: "portfolio-website-2",
+    //     isWorking: true
+    // },
 ];
