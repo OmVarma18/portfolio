@@ -29,7 +29,7 @@ export const skillComponents = {
 
 export const heroconfig = {
     name: "Om Varma",
-    title: "A Full Stack Web Developer.",
+    title: "Software Engineer",
     avatar: "/assets/logo2.png",
     skills: [
         {
@@ -59,13 +59,13 @@ export const heroconfig = {
         }
     ],
     discription: {
-        template: 'I build interactive web apps using {skills:0}, {skills:1}, {skills:2}, {skills:3} and {skills:4}. With a focus on <b>UI</b> design. Enthusiastic about <b>Product Development</b> , driven by a keen eye for design.',
+        template: 'Crafted with thoughtful design, persuasive copy, and modern engineering, every page is built to earn attention, build trust, and turn visitors into customers.',
     },
     buttons: [
         {
             variant: 'outline',
-            text: 'Resume / CV',
-            href: '/resume',
+            text: 'View my work',
+            href: '/projects',
             icon: 'CV',
         },
         {

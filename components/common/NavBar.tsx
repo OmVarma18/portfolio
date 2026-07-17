@@ -22,13 +22,7 @@ export default function Navbar({ projects, posts }: NavbarProps) {
             <div className="flex items-center justify-between px-6">
                 <div className="flex items-baseline gap-4">
                     <Link href="/">
-                        <Image
-                            className="h-12 w-12 rounded-md border border-gray-200 bg-blue-300 transition-all duration-300 ease-in-out hover:scale-110 dark:bg-yellow-300"
-                            src={getValidationImagePath(navbarConfig.logo.src)}
-                            alt={navbarConfig.logo.alt}
-                            width={navbarConfig.logo.width}
-                            height={navbarConfig.logo.height}
-                        />
+
                     </Link>
                     <div className="flex items-center justify-center gap-6">
                         {navbarConfig.navItems.map((item) => (

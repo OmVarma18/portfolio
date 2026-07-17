@@ -1,8 +1,5 @@
 import { about } from "./About";
 import { heroconfig } from "./Hero";
-import { basePath as configBasePath } from "../next.config";
-
-const basePath = configBasePath || "";
 
 export interface PageMeta {
     title: string;
@@ -26,6 +23,7 @@ export const siteConfig = {
     keywords: [
         'portfolio',
         'developer',
+        'designer',
         'full-stack',
         'react',
         'nextjs',
@@ -33,8 +31,8 @@ export const siteConfig = {
         'web development',
         heroconfig.name.toLowerCase(),
     ],
-    url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-    ogImage: `${basePath}/assets/logo2.png`,
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://omvarma.com",
+    ogImage: `/assets/logo2.png`,
 }
 
 export const pageMetadata: Record<string, PageMeta> = {
@@ -58,7 +56,7 @@ export const pageMetadata: Record<string, PageMeta> = {
         description:
             "Get in touch with me for collaborations, projects, or opportunities. I'd love to hear from you!",
         keywords: ['contact', 'hire', 'collaboration', 'freelance', 'developer'],
-        ogImage: `${basePath}/assets/logo.png`,
+        ogImage: `/assets/logo.png`,
         twitterCard: 'summary',
     },
 
@@ -74,7 +72,7 @@ export const pageMetadata: Record<string, PageMeta> = {
             'applications',
             'software',
         ],
-        ogImage: `${basePath}/meta/projects.png`,
+        ogImage: `/meta/projects.png`,
         twitterCard: 'summary',
     },
 
@@ -90,7 +88,7 @@ export const pageMetadata: Record<string, PageMeta> = {
             'qualifications',
             'download',
         ],
-        ogImage: `${basePath}/meta/resume.png`,
+        ogImage: `/meta/resume.png`,
         twitterCard: 'summary',
     },
 }
@@ -111,9 +109,9 @@ export function generateMetadata(pathname: string) {
         authors: [{ name: siteConfig.author.name }],
         creator: siteConfig.author.name,
         icons: {
-            icon: `${basePath}/assets/logo2.png`,
-            shortcut: `${basePath}/assets/logo2.png`,
-            apple: `${basePath}/assets/logo2.png`,
+            icon: `/assets/logo2.png`,
+            shortcut: `/assets/logo2.png`,
+            apple: `/assets/logo2.png`,
         },
         openGraph: {
             type: 'website',

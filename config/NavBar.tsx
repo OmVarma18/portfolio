@@ -4,28 +4,28 @@ export interface NavItem {
 }
 
 export const navbarConfig = {
-    logo: {
-        src: '/assets/logo2.png',
-        alt: 'logo',
-        width: 100,
-        height: 100,
-    },
+    // logo: {
+    //     src: '/assets/logo2.png',
+    //     alt: 'logo',
+    //     width: 100,
+    //     height: 100,
+    // },
     navItems: [
         // {
         //     label: 'Work',
         //     href: '/work-experience',
         // },
         {
-            label: 'Contact',
-            href: '/contact'
+            label: 'Home',
+            href: '/'
         },
         {
             label: 'Projects',
             href: '/projects',
         },
-        // {
-        //     label: 'Blogs',
-        //     href: '/blog',
-        // },
+        {
+            label: 'Blogs',
+            href: '/blog',
+        },
     ] as NavItem[],
 };

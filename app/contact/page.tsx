@@ -1,6 +1,7 @@
 import Container from '@/components/common/Container';
-import ContactForm from '@/components/contact/ContactForm';
 import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
+import { Mail } from 'lucide-react';
 import { contactConfig } from '@/config/Contact';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import { Metadata } from 'next';
@@ -36,9 +37,20 @@ export default function ContactPage() {
                 </div>
                 <Separator />
 
-                {/* Contact Form */}
-                <div className="mx-auto max-w-2xl">
-                    <ContactForm />
+                {/* Contact CTA */}
+                <div className="mx-auto flex flex-col items-center justify-center space-y-6 text-center mt-12 mb-24">
+                    <div className="bg-primary/10 p-6 rounded-full">
+                        <Mail className="h-12 w-12 text-primary" />
+                    </div>
+                    <h2 className="text-2xl font-semibold">Drop me an email</h2>
+                    <p className="text-muted-foreground max-w-md">
+                        I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
+                    </p>
+                    <Button asChild size="lg" className="mt-4 rounded-full px-8">
+                        <a href={`mailto:omvarma369@gmail.com`}>
+                            Say Hello
+                        </a>
+                    </Button>
                 </div>
             </div>
         </Container>

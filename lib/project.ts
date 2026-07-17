@@ -135,7 +135,7 @@ export function getProjectNavigation(currentSlug: string): {
 } {
     // Find current project in config
     const currentProjectIndex = projects.findIndex(
-        (project) => project.projectDetailsPageSlug === `/projects/${currentSlug}`,
+        (project) => project.projectDetailsPageSlug === currentSlug,
     );
 
     if (currentProjectIndex === -1) {
@@ -153,16 +153,13 @@ export function getProjectNavigation(currentSlug: string): {
         previous: previousProject
             ? {
                 title: previousProject.title,
-                slug: previousProject.projectDetailsPageSlug.replace(
-                    '/projects/',
-                    '',
-                ),
+                slug: previousProject.projectDetailsPageSlug,
             }
             : null,
         next: nextProject
             ? {
                 title: nextProject.title,
-                slug: nextProject.projectDetailsPageSlug.replace('/projects/', ''),
+                slug: nextProject.projectDetailsPageSlug,
             }
             : null,
     };

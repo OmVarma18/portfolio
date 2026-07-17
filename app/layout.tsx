@@ -33,6 +33,17 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
+        <head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                if (window.location.hostname === 'omvarma18.github.io') {
+                  window.location.replace('https://omvarma.com' + window.location.pathname.replace('/portfolio', '') + window.location.search + window.location.hash);
+                }
+              `
+            }}
+          />
+        </head>
         <body className={`font-hanken  antialiased `}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <TooltipProvider>

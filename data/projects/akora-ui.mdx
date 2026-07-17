@@ -1,0 +1,57 @@
+---
+title: "Akora UI"
+description: "A premium, accessible React component library and design system designed for modern, high-performance web applications."
+image: "/projects/Akora UI.webp"
+technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Framer Motion"]
+github: "https://github.com/OmVarma18/akora-ui"
+live: "https://akora-ui.vercel.app"
+timeline: "Mar 2026 - May 2026"
+role: "Lead UI Developer"
+status: "completed"
+featured: true
+isPublished: true
+challenges:
+  - "Designing smooth, high-performance micro-animations without causing layout shifts or rendering lag."
+  - "Ensuring full keyboard navigation and WAI-ARIA accessibility compliance across complex interactive components like dropdowns and modal drawers."
+  - "Structuring a flexible style sheet/variable system compatible with both raw Tailwind classes and CSS variables."
+learnings:
+  - "Mastered Framer Motion layout animations and optimized SVG transitions."
+  - "Deepened understanding of semantic HTML structures and accessible focus trapping techniques."
+  - "Implemented custom Tailwind plugins to generate bespoke utility classes for client projects."
+---
+
+# Akora UI
+
+Akora UI is a state-of-the-art design system and React component library built to simplify the process of creating beautiful, functional, and accessible user interfaces. Drawing inspiration from modern design practices (such as glassmorphism, dynamic hover states, and smooth spring-based animations), Akora UI provides developers with a set of pre-designed components that work out-of-the-box.
+
+## Features
+
+- **Dynamic Theme Engine**: Supports system-aware dark and light modes with seamless transitioning.
+- **Premium Components**: Offers buttons, inputs, bento grids, modal dialogs, sliding drawers, and animated tooltips.
+- **Accessible by Default**: Fully complies with WAI-ARIA guidelines, incorporating keyboard navigation and screen reader tags.
+- **Developer-Centric**: Easily configurable via a CLI wrapper similar to Shadcn UI, allowing code injection directly into your codebase.
+
+## Technical Implementation
+
+The component library utilizes **React** and **TypeScript** for absolute type safety. It leverages **Framer Motion** for spring-physics animations and **Tailwind CSS** for layout styling.
+
+### Sample Code
+
+Here's an example of how the `InteractiveCard` component is styled using Akora UI styling patterns:
+
+```tsx
+import React from 'react';
+import { motion } from 'framer-motion';
+
+export const InteractiveCard = ({ title, description }) => {
+    return (
+        <motion.div 
+            whileHover={{ scale: 1.02, y: -4 }}
+            className="border-primary/10 bg-background/50 rounded-xl border p-6 backdrop-blur-md transition-all shadow-sm"
+        >
+            <h3 className="text-xl font-semibold mb-2">{title}</h3>
+            <p className="text-muted-foreground text-sm">{description}</p>
+        </motion.div>
+    );
+};
+```

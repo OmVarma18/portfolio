@@ -104,7 +104,8 @@ export function CommandMenu({ projects, posts }: CommandMenuProps) {
                 }
                 if (e.key === 'c') {
                     e.preventDefault();
-                    router.push('/contact');
+                    navigator.clipboard.writeText('omvarma369@gmail.com');
+                    toast.success('Email copied to clipboard');
                 }
             }
 
@@ -153,7 +154,7 @@ export function CommandMenu({ projects, posts }: CommandMenuProps) {
         if (path === '/blog') return { title: 'Blog', description: 'Browse all blog posts', icon: <BookOpen className="mr-4 h-5 w-5 text-muted-foreground" />, shortcut: 'B' };
         if (path === '/projects') return { title: 'Projects', description: 'View all projects and work', icon: <Folder className="mr-4 h-5 w-5 text-muted-foreground" />, shortcut: 'P' };
         if (path === '/resume') return { title: 'Resume', description: 'View and download resume', icon: <FileText className="mr-4 h-5 w-5 text-muted-foreground" />, shortcut: 'R' };
-        if (path === '/contact') return { title: 'Contact', description: 'Send a message and get in touch', icon: <Phone className="mr-4 h-5 w-5 text-muted-foreground" />, shortcut: 'C' };
+        if (path === '/contact') return { title: 'Contact', description: 'Send an email to get in touch', icon: <Mail className="mr-4 h-5 w-5 text-muted-foreground" />, shortcut: 'C' };
         if (path === '/#setup') return { title: 'Setup', description: 'My workspace and tools', icon: <Laptop className="mr-4 h-5 w-5 text-muted-foreground" />, shortcut: 'S' };
 
         // Check projects
@@ -272,11 +273,13 @@ export function CommandMenu({ projects, posts }: CommandMenuProps) {
                             </div>
                             <CommandShortcut>R</CommandShortcut>
                         </CommandItem>
-                        <CommandItem className="py-4" onSelect={() => runCommand(() => router.push('/contact'))}>
-                            <Phone className="mr-4 h-5 w-5 text-muted-foreground" />
+                        <CommandItem className="py-4" onSelect={() => runCommand(() => {
+                            window.open('mailto:omvarma369@gmail.com');
+                        })}>
+                            <Mail className="mr-4 h-5 w-5 text-muted-foreground" />
                             <div className="flex flex-col text-left">
-                                <span className="text-sm font-semibold">Go to Contact</span>
-                                <span className="text-xs text-muted-foreground">Send a message and get in touch</span>
+                                <span className="text-sm font-semibold">Email Me</span>
+                                <span className="text-xs text-muted-foreground">Send an email to get in touch</span>
                             </div>
                             <CommandShortcut>C</CommandShortcut>
                         </CommandItem>

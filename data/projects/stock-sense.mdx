@@ -1,0 +1,54 @@
+---
+title: "Stock-Sense"
+description: "A stock screening application that helps you analyze and decide which stocks to invest in using real-time data."
+image: "/projects/dashboard.webp"
+technologies: ["Next.js", "TypeScript", "React", "MongoDB", "Tailwind CSS", "shadcn/ui"]
+github: "https://github.com/OmVarma18/stock-project"
+live: "https://github.com/OmVarma18/stock-project"
+timeline: "Sep 2025 - Dec 2025"
+role: "Full Stack Developer"
+status: "completed"
+featured: true
+isPublished: true
+challenges:
+  - "Integrating and normalizing financial market data from multiple third-party API providers with different schemas."
+  - "Designing a fast filtering and search engine on the frontend that processes thousands of stocks smoothly."
+  - "Implementing secure and performant caching structures in MongoDB to avoid hitting API rate limits."
+learnings:
+  - "Gained proficiency in constructing efficient MongoDB aggregation pipelines for complex financial metrics."
+  - "Utilized debounced search queries and virtual lists in React to handle rendering massive stock tables."
+  - "Learned how to set up robust error recovery mechanisms for external data feed disruptions."
+---
+
+# Stock-Sense
+
+Stock-Sense is a robust equity research and stock screening application designed for retail investors. By aggregating key performance indicators, financial statements, and valuation multiples into a single interface, Stock-Sense enables users to run complex query criteria (such as P/E ratio, market cap, dividend yield) to find investment opportunities.
+
+## Key Capabilities
+
+- **Multi-Factor Screening**: Search and filter stocks across sectors using custom criteria.
+- **Detailed Financial Charts**: Dynamic charts showing historical revenue, net income, and profit margins.
+- **Custom Watchlists**: Track specific equities and receive updates on earnings announcements.
+- **Data Normalization**: Cleaned data schema that makes it easy to compare companies in different sectors.
+
+## System Architecture
+
+Stock-Sense is powered by a **Next.js** frontend and backend API. Caching is handled on **MongoDB** to prevent database lookup latency and external API rate limit consumption.
+
+### Query Pipeline
+
+The database aggregation query looks like this:
+
+```typescript
+const filterQuery = {
+    marketCap: { $gte: minMarketCap },
+    peRatio: { $lte: maxPeRatio, $gt: 0 },
+    dividendYield: { $gte: minDividendYield }
+};
+
+const stocks = await db.collection("stocks")
+    .find(filterQuery)
+    .sort({ marketCap: -1 })
+    .limit(50)
+    .toArray();
+```

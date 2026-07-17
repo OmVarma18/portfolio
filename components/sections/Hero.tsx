@@ -5,6 +5,7 @@ import { cn, getValidationImagePath } from '@/lib/utils'
 import Link from 'next/link'
 
 
+
 import Skill from '../common/skill'
 import Container from '../common/Container'
 import Image from 'next/image'
@@ -15,10 +16,11 @@ import { Button } from '../ui/button'
 
 
 import { toast } from 'sonner'
+import Projects from '../svgs/projects'
 
 
 const buttonIcons = {
-    CV: CV,
+    CV: Projects,
     Chat: Chat
 }
 
@@ -62,17 +64,20 @@ const Hero = () => {
 
     return (
         <Container className=''>
-            <Image
-                src={getValidationImagePath(avatar)}
-                alt="hero"
-                width={100}
-                height={100}
-                className='size-24 rounded-full object-cover bg-blue-300 dark:bg-yellow-300 ring-4 ring-white shadow-lg dark:ring-neutral-900'
-            />
+            <div className='flex items-end gap-4'>
+                <Image
+                    src={getValidationImagePath(avatar)}
+                    alt="hero"
+                    width={100}
+                    height={100}
+                    className='size-24 rounded-full object-cover bg-blue-300 dark:bg-yellow-300 ring-4 ring-white shadow-lg dark:ring-neutral-900'
+                />
+                <p>Om Varma · Software Engineer & Landing Page Specialist</p>
+            </div>
 
             <div className="mt-8 flex flex-col gap-2">
                 <h1 className='text-4xl font-bold tracking-tight md:text-5xl'>
-                    Hi, I&apos;m {name} - <span className='text-secondary'>{title}</span>
+                    I build landing pages that help ambitious startups launch with confidence.
                 </h1>
                 <div className="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-2 text-base whitespace-pre-wrap text-neutral-500 dark:text-neutral-400 md:text-lg">
                     {renderDiscription()}

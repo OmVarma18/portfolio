@@ -1,0 +1,18 @@
+# Om Varma - Portfolio
+
+## Introduction
+Om Varma is a Convesion specialist landing pages that help ambitious startups launch with confidence. 
+
+## Contact Information
+- Name: Om Varma
+- Email: omvarma369@gmail.com
+- Website: https://omvarma.com
+- GitHub: https://github.com/OmVarma18
+
+## Featured Projects
+- **Akora UI**: A premium, accessible React component library and design system designed for modern, high-performance web applications. Built with React, Next.js, Tailwind CSS, and Framer Motion.
+- **Stock-Sense**: A stock screening application that helps analyze and decide which stocks to invest in using real-time data. Built with Next.js, MongoDB, and Tailwind CSS.
+- **Portfolio Website**: A sleek, modern portfolio built with Next.js, Tailwind CSS, and Framer Motion.
+
+## Services & Collaboration
+Om is always open to discussing new projects, creative ideas, or opportunities. Contact via email at omvarma369@gmail.com.
